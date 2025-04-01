@@ -124,3 +124,23 @@ button:active {
 .shoutout-container a:hover {
     text-decoration: underline;
 }
+
+.corner-link {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: rgba(75, 0, 0, 0.8);
+    /* Dark red background */
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    opacity: 0;
+    /* Hidden by default */
+    transition: opacity 0.3s ease-in-out;
+}
+
+.corner-link:hover {
+    opacity: 1;
+    /* Becomes visible when hovered */
+}

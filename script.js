@@ -3,8 +3,10 @@ const whatsappBtn = document.getElementById("whatsapp");
 const quoteContainer = document.getElementById("quote-container");
 const quoteText = document.getElementById("quote");
 const greetingText = document.getElementById("greeting");
-const quote = quoteText.innerText;
-const greeting = greetingText.innerText;
+const shoutoutContainer = document.querySelector(".shoutout-container");
+const quotegreeting = document.querySelector(".quote-greeting");
+const quoteBtn = document.getElementById("new-quote-btn");
+const cornerLink = document.querySelector(".corner-link");
 var site = "Hello";
 
 var quoteArray = [
@@ -39,22 +41,34 @@ var quoteArray = [
 
 function newQuote() {
   var randomNumber = Math.floor(Math.random() * quoteArray.length);
-  document.getElementById("quote").innerHTML = quoteArray[randomNumber];
+  var newQuote = quoteArray[randomNumber];
+  quoteText.innerHTML = newQuote;
+
+  // Reset styles first
+  quoteContainer.style.backgroundColor = "white";
+  quoteContainer.style.color = "black";
+  quoteContainer.style.fontWeight = "normal";
+  document.body.style.backgroundColor = "#f5f5f5"; // Default body background
+
+  // Apply styles based on quote content
+  if (newQuote.includes("Eid Mubarak")) {
+    quoteContainer.style.backgroundColor = "#ffeb3b"; // Yellow background
+    quoteContainer.style.color = "#d32f2f"; // Dark red text
+    quoteContainer.style.fontWeight = "bold";
+    document.body.style.backgroundColor = "#fff3cd"; // Light yellow body bg
+  } else if (newQuote.includes("https://")) {
+    quoteContainer.style.background =
+      "linear-gradient(to right, #4B0000, #200000)"; // Blue background for links
+    quoteContainer.style.color = "white";
+    document.body.style.background =
+      "linear-gradient(to right, #8B0000, #4B0000)"; // Light blue body bg
+    shoutoutContainer.style.display = "none"; // Hide shoutout section
+    quotegreeting.style.display = "none"; // Hide shoutout section
+    quoteBtn.style.display = "none";
+    cornerLink.style.display = "flex";
+  }
 }
 
-// function tweetQuote() {
-//   const twitterUrl = `https://twitter.com/intent/tweet?text=${quote} -  ${site}`;
-//   window.open(twitterUrl, "_blank");
-// }
-
-// function whatsappPost() {
-//   const whatsappUrl = `https://api.whatsapp.com/send?text=${quote} - ${site}`;
-//   window.open(whatsappUrl, "_blank");
-// }
-
-// twitterBtn.addEventListener("click", tweetQuote);
-// whatsappBtn.addEventListener("click", whatsappPost);
+quoteBtn.addEventListener("click", newQuote);
 
 console.log("I am watching you.");
-
-newQuote();
